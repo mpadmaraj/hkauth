@@ -10,7 +10,8 @@ angular.module('starter', ['ionic',
   'starter.services',
   'auth0',
   'angular-storage',
-  'angular-jwt'])
+  'angular-jwt',
+  'btford.socket-io'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -64,6 +65,15 @@ angular.module('starter', ['ionic',
         }
       }
     })
+      .state('tab.results', {
+        url: '/results',
+        views: {
+          'tab-dash': {
+            templateUrl: 'templates/tab-result.html',
+            controller: 'ResultCtrl'
+          }
+        }
+      })
     .state('tab.account', {
       url: '/account',
       views: {
