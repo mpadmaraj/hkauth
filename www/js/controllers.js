@@ -1,6 +1,6 @@
 angular.module('starter.controllers', [])
 
-    .controller('LoginCtrl', function ($scope, auth, $state, store) {
+    .controller('LoginCtrl', function ($scope, auth, $state, store,$http) {
         auth.signin({
             closable: false,
             // This asks for the refresh token
@@ -20,7 +20,19 @@ angular.module('starter.controllers', [])
     })
 
 
-    .controller('DashCtrl', function ($scope, $http, store, recordService, $log,hkSocket,$state) {
+    .controller('DashCtrl', function ($scope, $http, store, recordService, $log,hkSocket,$state) {})
+    .controller('AccountCtrl', function ($scope, recordService, $state, store,auth) {
+
+        $scope.logout = function () {
+            auth.signout();
+            store.remove('token');
+            store.remove('profile');
+            store.remove('refreshToken');
+            $state.go('login');
+        }
+    })
+    .controller('RecordCtrl', function ($scope, $http, store, recordService, $log,hkSocket,$state) {
+
         console.log(store.get('profile').user_id);
         $scope.hide = true;
         $scope.record = {};
@@ -49,7 +61,7 @@ angular.module('starter.controllers', [])
             }).
                 success(function (data, status, headers, config) {
                     console.log(data);
-                   // recordService.measuredData = data;
+                    // recordService.measuredData = data;
                 }).
                 error(function (data, status, headers, config) {
                     // $scope.name = 'Error!';
@@ -69,18 +81,7 @@ angular.module('starter.controllers', [])
 
         });
 
+
+
     })
-    .controller('AccountCtrl', function ($scope, recordService, $state, store) {
-
-        $scope.logout = function () {
-            auth.signout();
-            store.remove('token');
-            store.remove('profile');
-            store.remove('refreshToken');
-            $state.go('login');
-        }
-    })
-    .controller('ResultCtrl', function ($scope, auth, $state, store) {
-
-
-    });
+    .controller('ResultCtrl', function ($scope, $http, store, recordService, $log,hkSocket,$state) {});

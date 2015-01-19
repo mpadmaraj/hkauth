@@ -68,7 +68,7 @@ angular.module('starter', ['ionic',
       .state('tab.results', {
         url: '/results',
         views: {
-          'tab-dash': {
+          'tab-result': {
             templateUrl: 'templates/tab-result.html',
             controller: 'ResultCtrl'
           }
@@ -82,18 +82,28 @@ angular.module('starter', ['ionic',
           controller: 'AccountCtrl'
         }
       }
-    });
+    })
+      .state('tab.record', {
+        url: '/record',
+        views: {
+          'tab-record': {
+            templateUrl: 'templates/tab-record.html',
+            controller: 'RecordCtrl'
+          }
+        }
+      });
 
 
   // Configure Auth0
   authProvider.init({
     domain: AUTH0_DOMAIN,
     clientID: AUTH0_CLIENT_ID,
-    loginState: 'login'
+    loginState: 'login',
+    callbackURL:AUTH0_CALLBACK_URL
   });
 
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/tab/dash');
+  $urlRouterProvider.otherwise('/tab/record');
 
   jwtInterceptorProvider.tokenGetter = function(store, jwtHelper, auth) {
     var idToken = store.get('token');
