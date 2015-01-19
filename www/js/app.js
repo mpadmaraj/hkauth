@@ -65,15 +65,7 @@ angular.module('starter', ['ionic',
         }
       }
     })
-      .state('tab.results', {
-        url: '/results',
-        views: {
-          'tab-result': {
-            templateUrl: 'templates/tab-result.html',
-            controller: 'ResultCtrl'
-          }
-        }
-      })
+
     .state('tab.account', {
       url: '/account',
       views: {
@@ -89,6 +81,15 @@ angular.module('starter', ['ionic',
           'tab-record': {
             templateUrl: 'templates/tab-record.html',
             controller: 'RecordCtrl'
+          }
+        }
+      })
+      .state('tab.results', {
+        url: '/results',
+        views: {
+          'tab-record': {
+            templateUrl: 'templates/tab-result.html',
+            controller: 'ResultCtrl'
           }
         }
       });

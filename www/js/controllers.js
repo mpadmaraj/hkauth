@@ -13,7 +13,7 @@ angular.module('starter.controllers', [])
             store.set('token', idToken);
             store.set('refreshToken', refreshToken);
             console.log(store);
-            $state.go('tab.dash');
+            $state.go('tab.record');
         }, function (error) {
             console.log("There was an error logging in", error);
         });
@@ -66,6 +66,8 @@ angular.module('starter.controllers', [])
                 error(function (data, status, headers, config) {
                     // $scope.name = 'Error!';
                 });
+            $state.go('tab.results');
+
         };
         $scope.$on('socket:broadcast', function(event, data) {
             $log.debug( data);
@@ -84,4 +86,4 @@ angular.module('starter.controllers', [])
 
 
     })
-    .controller('ResultCtrl', function ($scope, $http, store, recordService, $log,hkSocket,$state) {});
+    .controller('ResultCtrl', function ($scope, $http, store, recordService, $log,hkSocket,$state) {console.log("hi")});

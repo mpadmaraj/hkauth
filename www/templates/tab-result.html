@@ -1,34 +1,7 @@
 <ion-view title="Results">
   <ion-content class="has-header padding">
-    <ul class="list">
-
-      <li class="item item-checkbox">
-        <label class="checkbox">
-          <input ng-model="record.pulse" type="checkbox">
-        </label>
-        Pulse
-      </li>
-      <li class="item item-checkbox">
-        <label class="checkbox">
-          <input ng-model="record.bp" type="checkbox" ng-change="showBPMessage()">
-        </label>
-        Blood Pressure
-      </li>
-      <li class="item item-checkbox">
-        <label class="checkbox">
-          <input ng-model="record.spo2" type="checkbox" >
-        </label>
-        SPO2
-      </li>
-
-    </ul>
-    <div class="card" ng-hide="hide">
-      <div class="item item-text-wrap"  style="color: red!important">
-        {{record.message}}
-      </div>
+    <div class="row">
+      <div class="col">.col</div>
     </div>
-    <button class="button button-positive button-block" ng-click="startRecording()">
-    Record
-    </button>
   </ion-content>
 </ion-view>
