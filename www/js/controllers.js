@@ -20,7 +20,21 @@ angular.module('starter.controllers', [])
     })
 
 
-    .controller('DashCtrl', function ($scope, $http, store, recordService, $log,hkSocket,$state) {})
+    .controller('DashCtrl', function ($scope, $http, store, recordService, $log,hkSocket,$state) {
+        $http({
+            method: 'GET',
+            url: SERVER_URL+'/getUserRecording',
+            params:{user:store.get('profile').user_id}
+        }).
+            success(function (data, status, headers, config) {
+                // $scope.name = data.name;
+                $log.debug( data);
+                $scope.records=data;
+            }).
+            error(function (data, status, headers, config) {
+                // $scope.name = 'Error!';
+            });
+    })
     .controller('AccountCtrl', function ($scope, recordService, $state, store,auth) {
 
         $scope.logout = function () {
@@ -66,18 +80,12 @@ angular.module('starter.controllers', [])
                 error(function (data, status, headers, config) {
                     // $scope.name = 'Error!';
                 });
-            $state.go('tab.results');
-
         };
         $scope.$on('socket:broadcast', function(event, data) {
             $log.debug( data);
             $scope.data=data.payload;
             if($scope.data.username==store.get('profile').user_id){
-                recordService.measure={};
-                recordService.measure.pulse=$scope.data.pulse;
-                recordService.measure.systolic=$scope.data.systolic;
-                recordService.measure.diastolic=$scope.data.diastolic;
-                recordService.measure.spo2=$scope.data.spo2;
+                recordService.measure=$scope.data;
                 $state.go('tab.results');
             }
 
@@ -86,4 +94,8 @@ angular.module('starter.controllers', [])
 
 
     })
-    .controller('ResultCtrl', function ($scope, $http, store, recordService, $log,hkSocket,$state) {console.log("hi")});
+    .controller('ResultCtrl', function ($scope, $http, store, recordService, $log,hkSocket,$state) {
+        $scope.measure=recordService.measure;
+
+
+    });

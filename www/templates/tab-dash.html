@@ -1,5 +1,21 @@
 <ion-view title="HealthMate">
   <ion-content class="has-header padding">
-Test
+
+    <div class="row">
+      <div class="col col-35">Date</div>
+      <div class="col">HR</div>
+      <div class="col">SYS</div>
+      <div class="col">DIA</div>
+      <div class="col">Spo2</div>
+    </div>
+
+
+    <div class="row" ng-repeat="record in records">
+      <div class="col col-35">{{record.date| date:'d MMM yyyy hh:mm a'}}</div>
+      <div class="col">{{record.pulse}}</div>
+      <div class="col">{{record.bp.systolic}}</div>
+      <div class="col">{{record.bp.diastolic}}</div>
+      <div class="col">{{record.spo2}}</div>
+    </div>
   </ion-content>
 </ion-view>

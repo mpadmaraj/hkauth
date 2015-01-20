@@ -1,7 +1,62 @@
 <ion-view title="Results">
-  <ion-content class="has-header padding">
-    <div class="row">
-      <div class="col">.col</div>
-    </div>
-  </ion-content>
+    <ion-content class="has-header padding">
+        <div class="row">
+            <div class="col">
+                <div class="well wellh">
+                    <div class="topleft">
+                        <p>HR</p>
+                    </div>
+                    <div class="alignreading">
+                        <p class="ng-binding">{{measure.pulse.reading}}
+                            <span class="measure">bpm</span>
+                        </p>
+                    </div>
+                    <div ng-class="measure.pulse.color=='green'?'greencircle':(measure.pulse.color=='red'?'redcircle':'yellowcircle')"></div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <div class="well wellh">
+                    <div class="topleft"><p>NIBP</p></div>
+                    <div class="alignreading">
+                        <table style="width:100%">
+                            <tbody>
+                            <tr>
+                                <td class="ng-binding">{{measure.bp.systolic}}</td>
+                                <td class="measure">mmHg</td>
+                                <td class="ng-binding">{{measure.bp.diastolic}}</td>
+                            </tr>
+                            <tr>
+                                <td class="measure">sys</td>
+                                <td></td>
+                                <td class="measure">dias</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div ng-class="measure.bp.color=='green'?'greencircle':(measure.bp.color=='red'?'redcircle':'yellowcircle')"></div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <div class="well wellh">
+                    <div class="topleft"><p>SpO2</p>
+                    </div>
+                    <div class="alignreading">
+                        <p class="ng-binding">{{measure.spo2.reading}}
+                            <span class="measure">%</span>
+                        </p>
+                    </div>
+                    <div ng-class="measure.spo2.color=='green'?'greencircle':(measure.spo2.color=='red'?'redcircle':'yellowcircle')"></div>
+                </div>
+            </div>
+        </div>
+        <div class="card" >
+            <div class="item item-text-wrap" ng-bind-html="measure.comments" >
+
+            </div>
+        </div>
+    </ion-content>
 </ion-view>
